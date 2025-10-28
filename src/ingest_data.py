@@ -19,9 +19,26 @@ def clean_text(text):
     if not isinstance(text, str):
         return ""
     
-    # Remove common OCR noise patterns
-    text = re.sub(r'\s+', ' ', text)  # Normalize whitespace
-    text = text.strip(' "\'|=*-_')
+    # Remove bracketed content that contains OCR noise
+    text = re.sub(r'\[.*?\]', '', text)
+    
+    # Remove patterns like "REE? [" or "SRE:"
+    text = re.sub(r'\b[A-Z]{2,4}\?\s*', '', text)
+    text = re.sub(r'\b[A-Z]{2,}\d*\s*:', '', text)
+    
+    # Remove repeated characters (OCR artifacts)
+    text = re.sub(r'(.)\1{3,}', r'\1\1', text)
+    
+    # Remove trailing colons, pipes, question marks
+    text = re.sub(r'\s*[:\|?]+\s*$', '', text)
+    
+    # Remove everything after ": REE" or similar patterns
+    text = re.sub(r'\s*:\s*REE.*$', '', text)
+    text = re.sub(r'\s*:\s*[A-Z]{3,}.*$', '', text)
+    
+    # Normalize whitespace
+    text = re.sub(r'\s+', ' ', text)
+    text = text.strip(' "\'|=*-_:')
     
     return text.strip()
 
@@ -185,6 +202,24 @@ def parse_calendar_table(text, source_file):
     df['raw_date_text'] = df['raw_date_text'].apply(lambda x: clean_text(x))
     df['day_text'] = df['day_text'].apply(lambda x: clean_text(x))
     df['details_text'] = df['details_text'].apply(lambda x: clean_text(x))
+    
+    # Additional cleaning for details - remove common OCR artifacts
+    def clean_details(text):
+        if not isinstance(text, str):
+            return ""
+        
+        # Remove everything after common OCR noise indicators
+        # Split at patterns like ": REE", ": [", "? [", etc.
+        for pattern in [r'\s*:\s*REE', r'\s*:\s*\[', r'\s*\?\s*\[', r'\s*:\s*[A-Z]{3,}']:
+            if re.search(pattern, text):
+                text = re.split(pattern, text)[0]
+        
+        # Remove trailing punctuation artifacts
+        text = re.sub(r'[:\|?]+$', '', text)
+        
+        return text.strip()
+    
+    df['details_text'] = df['details_text'].apply(clean_details)
     
     # Remove duplicates
     df = df.drop_duplicates(subset=['raw_date_text', 'details_text'], keep='first')

@@ -4,7 +4,7 @@ id,raw_date_text,day_text,details_text,source_file,normalized_date_start,normali
 3,17.07.2024,Wednesdayy,Course add/drop option to students,Screenshot 2025-10-29 034317.png,2024-07-17,2024-07-17,add_drop_withdraw
 4,31.08.2024,Saturdayy,Continuous Assessment Test -1 BE” (EE [eesti,Screenshot 2025-10-29 034317.png,2024-08-31,2024-08-31,exam
 5,18.09.2024,Wednesdayy,Course withdraw option for students Bose ee lee,Screenshot 2025-10-29 034317.png,2024-09-18,2024-09-18,add_drop_withdraw
-6,29.09.2024,Sunday,Gravitas’24 : REE? [SRE leeetemensens,Screenshot 2025-10-29 034317.png,2024-09-29,2024-09-29,holiday_vacation
+6,29.09.2024,Sunday,Gravitas’24,Screenshot 2025-10-29 034317.png,2024-09-29,2024-09-29,holiday_vacation
 7,19.10.2024,Saturdayy,Continuous Assessment Test — IL Ee ad al,Screenshot 2025-10-29 034317.png,2024-10-19,2024-10-19,exam
 8,03.11.2024,Sunday,Deepavali (Holiday Fe a,Screenshot 2025-10-29 034317.png,2024-11-03,2024-11-03,holiday_vacation
 9,07.10.2023,Saturdayy,Course wish list registration by students S25 [A [eematanennsee —,Screenshot 2025-10-29 041336.png,2023-10-07,2023-10-07,registration
@@ -14,7 +14,7 @@ id,raw_date_text,day_text,details_text,source_file,normalized_date_start,normali
 13,17.02.2024,Saturdayy,Continuous Assessment Test -1 Eel,Screenshot 2025-10-29 041336.png,2024-02-17,2024-02-17,exam
 14,03.03.2024,Sunday,Riviera 2024,Screenshot 2025-10-29 041336.png,2024-03-03,2024-03-03,holiday_vacation
 15,06.03.2024,Wednesdayy,"Course withdraw option for students 228!"" [222 lemme,",Screenshot 2025-10-29 041336.png,2024-03-06,2024-03-06,add_drop_withdraw
-16,07.04.2024,Sunday,"Continuous Assessment Test - IT 2222"" [RE haere",Screenshot 2025-10-29 041336.png,2024-04-07,2024-04-07,exam
+16,07.04.2024,Sunday,"Continuous Assessment Test - IT 22"" [RE haere",Screenshot 2025-10-29 041336.png,2024-04-07,2024-04-07,exam
 17,03.05.2024,Fridayy,Final assessment test for laboratory courses/ components,Screenshot 2025-10-29 041336.png,2024-05-03,2024-05-03,exam
 18,05.01.2024,,to Friday Course add/drop option to students ee ee eit,Screenshot 2025-10-29 041636.png,2024-01-05,2024-01-05,add_drop_withdraw
 19,15.01.2024,Monday,Pongal Holidays,Screenshot 2025-10-29 041636.png,2024-01-15,2024-01-15,holiday_vacation
@@ -27,7 +27,7 @@ id,raw_date_text,day_text,details_text,source_file,normalized_date_start,normali
 26,29.07.2024,,to | Monday to . .,Screenshot 2025-10-29 041739.png,2024-07-29,2024-07-29,other
 27,03.08.2024,,Course allocation and scheduling by Schools,Screenshot 2025-10-29 041739.png,2024-08-03,2024-08-03,other
 28,07.08.2024,Wednesdayy,Course registration by students (11.00 am to 6.00 pm),Screenshot 2025-10-29 041739.png,2024-08-07,2024-08-07,registration
-29,10.08.2024,,Commencement of Fall WEI Semester 2024-25 (First Instructional Day) 21.0920 anreey Mid Term Test :,Screenshot 2025-10-29 041739.png,2024-08-10,2024-08-10,other
+29,10.08.2024,,Commencement of Fall WEI Semester 2024-25 (First Instructional Day) 21.0920 anreey Mid Term Test,Screenshot 2025-10-29 041739.png,2024-08-10,2024-08-10,other
 30,16.11.2024,,Final assessment test for laboratory courses/ components Final assessment test for laboratory courses/ components &,Screenshot 2025-10-29 041739.png,2024-11-16,2024-11-16,exam
 31,17.11.2024,Sunday,Last instructional day for theory classes,Screenshot 2025-10-29 041739.png,2024-11-17,2024-11-17,other
 32,18.07.2025,,Course wish list registration by students,Screenshot 2025-10-29 041814.png,2025-07-18,2025-07-18,registration
