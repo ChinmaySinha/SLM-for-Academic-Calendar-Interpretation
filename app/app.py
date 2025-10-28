@@ -41,11 +41,12 @@ def search():
 
     results = []
     for i in top_indices:
-        # Check if the similarity score is above a certain threshold
-        if cosine_similarities[i] > 0.1:
+        # --- START OF FIX ---
+        # Lowered the threshold to 0.01 to catch more relevant results
+        if cosine_similarities[i] > 0.01:
+        # --- END OF FIX ---
              results.append(df.iloc[i].to_dict())
 
     return render_template('index.html', results=results, query=query)
-
 if __name__ == '__main__':
     app.run(debug=True)

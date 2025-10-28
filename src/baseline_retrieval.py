@@ -8,11 +8,20 @@ def main():
     try:
         df = pd.read_csv(input_path)
     except FileNotFoundError:
-        print(f"Error: {input_t_path} not found. Please run the full data processing pipeline first.")
+        # Corrected the variable name in the f-string from input_t_path to input_path
+        print(f"Error: {input_path} not found. Please run the full data processing pipeline first.")
         return
 
+    # --- START OF FIX ---
+    # Fill NaN values in all text columns with an empty string
+    # before combining them.
+    df['details_text'] = df['details_text'].fillna('')
+    df['raw_date_text'] = df['raw_date_text'].fillna('')
+    df['day_text'] = df['day_text'].fillna('')
+    # --- END OF FIX ---
+
     # Create a combined text column for indexing
-    df['combined_text'] = df['details_text'] + ' ' + df['raw_date_text'] + ' ' + df['day_text'].fillna('')
+    df['combined_text'] = df['details_text'] + ' ' + df['raw_date_text'] + ' ' + df['day_text']
 
     # Create and train the TF-IDF vectorizer
     vectorizer = TfidfVectorizer(stop_words='english')

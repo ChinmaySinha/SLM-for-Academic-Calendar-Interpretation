@@ -2,6 +2,14 @@ import pandas as pd
 
 def categorize_event(details_text):
     """Categorizes an event based on its details text."""
+
+    # --- START OF FIX ---
+    # Check if the incoming value is not a string (e.g., NaN, which is a float)
+    # If it's not a string, we can't categorize it, so return 'other'.
+    if not isinstance(details_text, str):
+        return 'other'
+    # --- END OF FIX ---
+
     details_lower = details_text.lower()
 
     if 'add/drop' in details_lower or 'course withdraw' in details_lower:
@@ -18,10 +26,14 @@ def categorize_event(details_text):
         return 'exam'
     if 're-examination' in details_lower:
         return 'exam'
+    if 'assessment test' in details_lower: # Added this to catch CAT-1, CAT-II
+        return 'exam'
     if 'holiday' in details_lower or 'vacation' in details_lower:
         return 'holiday_vacation'
     if 'fee payment' in details_lower:
         return 'fee_payment'
+    if 'gravitas' in details_lower or 'riviera' in details_lower: # Added fests
+        return 'holiday_vacation'
 
     return 'other'
 

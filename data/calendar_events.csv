@@ -1,20 +1,93 @@
 id,raw_date_text,day_text,details_text,source_file,normalized_date_start,normalized_date_end,event_type
-1,29.10.2025,Wednesday,Mock - Course registration for Freshers,calendar.png,2025-10-29,2025-10-29,registration
-2,01.11.2025,Saturda,Course registration by students (05.12.2025 Frida ‘Commencement of Winter Semester 2025-26,calendar.png,2025-11-01,2025-11-01,registration
-3,05.12.2025,to,07.12.2025 _| Friday to Sunday Course add/drop option for students,calendar.png,2025-12-05,2025-12-05,add_drop_withdraw
-4,13.12.2025,Saturday,Last date for the payment of re-registration fees,calendar.png,2025-12-13,2025-12-13,registration
-5,21.12.2025,to,04.01.2026 Sunday to Sunday Winter Vacation for the students (15 Days),calendar.png,2025-12-21,2025-12-21,holiday_vacation
-6,14.01.2026,to,18.01.2026 Wednesday to Sunday Pongal Holidays,calendar.png,2026-01-14,2026-01-14,holiday_vacation
-7,27.01.2026,to,02.02.2026 Tuesday to Monday Continuous Assessment Test -1,calendar.png,2026-01-27,2026-01-27,other
-8,16.02.2026,to,18.02.2026 Monday to Wednesday Course withdraw option for students,calendar.png,2026-02-16,2026-02-16,add_drop_withdraw
-9,26.02.2026,to,01.03.2026 | Thursday to Sunday Riviera 2026 (04.03.2026 Wednesday Holi (Holiday),calendar.png,2026-02-26,2026-02-26,holiday_vacation
-10,15.03.2026,to,23.03.2026 | Sunday to Monday ‘Continuous Assessment Test — II 19.03.2026 Thursday Ramzan (Holiday),calendar.png,2026-03-15,2026-03-15,holiday_vacation
-11,20.03.2026,Frida,‘Telugu New Year's Day,calendar.png,2026-03-20,2026-03-20,other
-12,03.04.2026,Frida,Good Friday (No Instructional Day),calendar.png,2026-04-03,2026-04-03,other
-13,10.04.2026,Friday,Last instructional day for laboratory classes,calendar.png,2026-04-10,2026-04-10,other
-14,11.04.2026,to,17.04.2026 Saturday to Friday Final assessment test for laboratory courses! components Tamil New Year's Day/ Dr. B. R. Ambedkar Birthday,calendar.png,2026-04-11,2026-04-11,other
-15,14.04.2026,Tuesday,(Holiday),calendar.png,2026-04-14,2026-04-14,holiday_vacation
-16,17.04.2026,Frida,Last instructional day for theory classes ‘Commencement of final assessment test for theory,calendar.png,2026-04-17,2026-04-17,other
-17,20.04.2026,Monday,courses / components,calendar.png,2026-04-20,2026-04-20,other
-18,11.05.2026,Monday,Commencement of Summer Term 2025-26 (Tentative),calendar.png,2026-05-11,2026-05-11,other
-19,13.07.2026,Monday,"Commencement of Fall Semester 2026-27 (Tentative) Note: Students should participate in the course wish list registration (mandatory) to become eligible for Course Registration It is necessary to maintain 100% attendance. However, relaxation on minimum attendance requirement is given for ‘genuine reasons. A minimum of 75% attendance is mandatory for appearing for the examinations (Continuous ‘Assessment Tests and Final Assessment Tests) Last date for the upload of the assignments and project reports is 17-04-2026 (Friday). FAT schedule will be announced by CoE at the appropriate time, CAT-1| CAT-I | FAT | Total No. of if Instructional Days 28 28 19 | 75 WR M. Anthony Xavior PhD Dean Academics ln fes",calendar.png,2026-07-13,2026-07-13,registration
+1,19.06.2024,Wednesday,Course wish list registration by students,Screenshot 2025-10-29 034317.png,2024-06-19,2024-06-19,registration
+2,01.07.2024,Monday,Course allocation and scheduling by Schools 2” SS ecteatannene,Screenshot 2025-10-29 034317.png,2024-07-01,2024-07-01,other
+3,17.07.2024,Wednesday,Course add/drop option to students Eee (emmpeeangey,Screenshot 2025-10-29 034317.png,2024-07-17,2024-07-17,add_drop_withdraw
+4,31.08.2024,Saturday,Continuous Assessment Test -1 SS” [Be eemutceinteams,Screenshot 2025-10-29 034317.png,2024-08-31,2024-08-31,exam
+5,18.09.2024,Wednesday,Course withdraw option for students eee ee lee,Screenshot 2025-10-29 034317.png,2024-09-18,2024-09-18,add_drop_withdraw
+6,29.09.2024,Sunday,"Gravitas'24 R82"" [ES leomsemanoe-a",Screenshot 2025-10-29 034317.png,2024-09-29,2024-09-29,holiday_vacation
+7,19.10.2024,Saturday,Continuous Assessment Test — II al,Screenshot 2025-10-29 034317.png,2024-10-19,2024-10-19,exam
+8,03.11.2024,Sunday,Deepavali (Holiday)y)y)y St [ emma naan,Screenshot 2025-10-29 034317.png,2024-11-03,2024-11-03,holiday_vacation
+9,22.11.2024,Friday,Final Assessment Test (FAT) for laboratory courses/ components,Screenshot 2025-10-29 034317.png,2024-11-22,2024-11-22,exam
+10,10.12.2024,Tuesday,components ZEB [S08 ve eatetrmnsmcaien,Screenshot 2025-10-29 034317.png,2024-12-10,2024-12-10,other
+11,05.01.2025,Sunday,Winter Vacation for the students (Tentative),Screenshot 2025-10-29 034317.png,2025-01-05,2025-01-05,holiday_vacation
+12,07.10.2023,Saturday,Course wish list registration by students Fil,Screenshot 2025-10-29 041336.png,2023-10-07,2023-10-07,registration
+13,20.10.2023,Friday,"Course allocation and scheduling by Schools S232"" [SAE"" lemseemamseame",Screenshot 2025-10-29 041336.png,2023-10-20,2023-10-20,other
+14,05.01.2024,,to Friday Course add/drop option to students e =a,Screenshot 2025-10-29 041336.png,2024-01-05,2024-01-05,add_drop_withdraw
+15,15.01.2024,Monday,Pongal Holidays HEE [ES [ceimeatmemnt,Screenshot 2025-10-29 041336.png,2024-01-15,2024-01-15,holiday_vacation
+16,17.02.2024,Saturday,Continuous Assessment Test -1,Screenshot 2025-10-29 041336.png,2024-02-17,2024-02-17,exam
+17,03.03.2024,Sunday,Riviera 2024,Screenshot 2025-10-29 041336.png,2024-03-03,2024-03-03,holiday_vacation
+18,06.03.2024,Wednesday,Course withdraw option for students SE” [EE [omens,Screenshot 2025-10-29 041336.png,2024-03-06,2024-03-06,add_drop_withdraw
+19,07.04.2024,Sunday,Continuous Assessment Test - II fata” [BS [noteseumeicotinnon cu cmonmis,Screenshot 2025-10-29 041336.png,2024-04-07,2024-04-07,exam
+20,03.05.2024,Friday,Final assessment test for laboratory courses/ components,Screenshot 2025-10-29 041336.png,2024-05-03,2024-05-03,exam
+21,05.01.2024,,to Friday Course add/drop option to students eee ee lets,Screenshot 2025-10-29 041636.png,2024-01-05,2024-01-05,add_drop_withdraw
+22,15.01.2024,,Monda' Pongal Holidays HEE [ES [ceimeatmemnt,Screenshot 2025-10-29 041636.png,2024-01-15,2024-01-15,holiday_vacation
+23,11.04.2026 to 17.04.2026,,"Saturday to Frida components fiseiams asaya"" EE",Screenshot 2025-10-29 041708.png,2026-04-11,2026-04-17,other
+24,14.04.2026,Tuesday,(Holiday)y)y) moc Iasi,Screenshot 2025-10-29 041708.png,2026-04-14,2026-04-14,holiday_vacation
+25,20.04.2026,Monday,courses / components,Screenshot 2025-10-29 041708.png,2026-04-20,2026-04-20,other
+26,28.07.2024,,Course wish list registration by students,Screenshot 2025-10-29 041739.png,2024-07-28,2024-07-28,registration
+27,29.07.2024,,to Monday to + 7,Screenshot 2025-10-29 041739.png,2024-07-29,2024-07-29,other
+28,03.08.2024,,Course allocation and scheduling by Schools,Screenshot 2025-10-29 041739.png,2024-08-03,2024-08-03,other
+29,07.08.2024,Wednesday,Course registration by students (11.00 am to 6.00 pm),Screenshot 2025-10-29 041739.png,2024-08-07,2024-08-07,registration
+30,10.08.2024,,Commencement of Fall WEI Semester 2024-25 (First Instructional Day) 21092024 y Mid Term Test,Screenshot 2025-10-29 041739.png,2024-08-10,2024-08-10,other
+31,22.09.2024,,,Screenshot 2025-10-29 041739.png,2024-09-22,2024-09-22,other
+32,16.11.2024,,Final assessment test for laboratory courses/ components Final assessment test for laboratory courses/ components,Screenshot 2025-10-29 041739.png,2024-11-16,2024-11-16,exam
+33,17.11.2024,Sunday,Last instructional day for theory classes,Screenshot 2025-10-29 041739.png,2024-11-17,2024-11-17,other
+34,18.07.2025,,Course wish list registration by students,Screenshot 2025-10-29 041814.png,2025-07-18,2025-07-18,registration
+35,19.07.2025,,to Saturday to 7,Screenshot 2025-10-29 041814.png,2025-07-19,2025-07-19,other
+36,23.07.2025,Wednesday,Course allocation and scheduling by Schools,Screenshot 2025-10-29 041814.png,2025-07-23,2025-07-23,other
+37,25.07.2025,,Course registration by students (11.00 am to 6.00 pm),Screenshot 2025-10-29 041814.png,2025-07-25,2025-07-25,registration
+38,26.07.2025,,Commencement of Fall WEI Semester 2025-26 (First Instructional Day),Screenshot 2025-10-29 041814.png,2025-07-26,2025-07-26,other
+39,20.09.2025,,,Screenshot 2025-10-29 041814.png,2025-09-20,2025-09-20,other
+40,71.09.2025,,Mid Term Test,Screenshot 2025-10-29 041814.png,,,other
+41,15.11.2025,,Final assessment test for laboratory courses/ components Final assessment test for laboratory courses/ components,Screenshot 2025-10-29 041814.png,2025-11-15,2025-11-15,exam
+42,16.11.2025,Sunday,Last instructional day for theory classes,Screenshot 2025-10-29 041814.png,2025-11-16,2025-11-16,other
+43,04.06.2025,Wednesday,Course wish list registration by students,Screenshot 2025-10-29 041854.png,2025-06-04,2025-06-04,registration
+44,09.06.2025,,to Monday to 2 i,Screenshot 2025-10-29 041854.png,2025-06-09,2025-06-09,other
+45,20.06.2025,,Course allocation and scheduling by Schools,Screenshot 2025-10-29 041854.png,2025-06-20,2025-06-20,other
+46,28.06.2025,,Course registration by students,Screenshot 2025-10-29 041854.png,2025-06-28,2025-06-28,registration
+47,09.07.2025,Wednesday,Commencement of Fall Semester 2025-26,Screenshot 2025-10-29 041854.png,2025-07-09,2025-07-09,other
+48,09.07.2025,,to Wednesday,Screenshot 2025-10-29 041854.png,2025-07-09,2025-07-09,other
+49,11.07.2025,,Course add/drop option to students,Screenshot 2025-10-29 041854.png,2025-07-11,2025-07-11,add_drop_withdraw
+50,20.07.2025,,Last date for the payment of re-registration fees,Screenshot 2025-10-29 041854.png,2025-07-20,2025-07-20,registration
+51,15.08.2025,,Independence Day (Holiday)y)y)y),Screenshot 2025-10-29 041854.png,2025-08-15,2025-08-15,holiday_vacation
+52,17.08.2025,,to Sunday to a,Screenshot 2025-10-29 041854.png,2025-08-17,2025-08-17,other
+53,23.08.2025,,Continuous Assessment Test -1,Screenshot 2025-10-29 041854.png,2025-08-23,2025-08-23,exam
+54,27.08.2025,,Vinayakar Chathurthi (Holiday)y)y)y,Screenshot 2025-10-29 041854.png,2025-08-27,2025-08-27,holiday_vacation
+55,05.09.2025,,Meelad-un-Nabi (No Instructional Day),Screenshot 2025-10-29 041854.png,2025-09-05,2025-09-05,other
+56,08.09.2025,,to Monday to,Screenshot 2025-10-29 041854.png,2025-09-08,2025-09-08,other
+57,10.09.2025,,Course withdraw option for students,Screenshot 2025-10-29 041854.png,2025-09-10,2025-09-10,add_drop_withdraw
+58,26.09.2025,,to Friday to aa,Screenshot 2025-10-29 041854.png,2025-09-26,2025-09-26,other
+59,01.10.2025,,Ayutha Pooja (Holiday)y)y),Screenshot 2025-10-29 041854.png,2025-10-01,2025-10-01,holiday_vacation
+60,02.10.2025,,Gandhi Jayanthi (Holiday)y)y)y) ote fo Sauniny Continuous Assessment Test — II,Screenshot 2025-10-29 041854.png,2025-10-02,2025-10-02,exam
+61,18.10.2025,,to Saturday to 7,Screenshot 2025-10-29 041854.png,2025-10-18,2025-10-18,other
+62,26.10.2025,,Deepavali (Holiday)y)y)y),Screenshot 2025-10-29 041854.png,2025-10-26,2025-10-26,holiday_vacation
+63,07.11.2025,,Last instructional day for laboratory classes,Screenshot 2025-10-29 041854.png,2025-11-07,2025-11-07,other
+64,10.11.2025,,to Monday to,Screenshot 2025-10-29 041854.png,2025-11-10,2025-11-10,other
+65,14.11.2025,,Final Assessment Test (FAT) for laboratory courses/ components,Screenshot 2025-10-29 041854.png,2025-11-14,2025-11-14,exam
+66,14.11.2025,,Last instructional day for theory classes,Screenshot 2025-10-29 041854.png,2025-11-14,2025-11-14,other
+67,17.11.2025,,to Monday to,Screenshot 2025-10-29 041854.png,2025-11-17,2025-11-17,other
+68,04.12.2025,,Thurs aa Commencement of Final Assessment Test (FAT) for theory courses,Screenshot 2025-10-29 041854.png,2025-12-04,2025-12-04,exam
+69,05.12.2025,,Commencement of Winter Semester 2025-2026 (Tentative) on bree to Sanna '0 Winter Vacation for the students (Tentative),Screenshot 2025-10-29 041854.png,2025-12-05,2025-12-05,holiday_vacation
+70,05.01.2025,,Course wish list registration by students (10.00 am to 4.00 pm),Screenshot 2025-10-29 041919.png,2025-01-05,2025-01-05,registration
+71,06.01.2025,,to Monday to,Screenshot 2025-10-29 041919.png,2025-01-06,2025-01-06,other
+72,09.01.2025,,Thursday Course allocation and scheduling by Schools,Screenshot 2025-10-29 041919.png,2025-01-09,2025-01-09,other
+73,12.01.2025,,Course registration by students (11.00 am to 6.00 pm),Screenshot 2025-10-29 041919.png,2025-01-12,2025-01-12,registration
+74,19.01.2025,,First Instructional Day,Screenshot 2025-10-29 041919.png,2025-01-19,2025-01-19,other
+75,09.03.2025,,Mid Term Test,Screenshot 2025-10-29 041919.png,2025-03-09,2025-03-09,other
+76,19.04.2025,,Final assessment test for laboratory courses/ components Final assessment test for laboratory courses/ components,Screenshot 2025-10-29 041919.png,2025-04-19,2025-04-19,exam
+77,20.04.2025,,Last instructional day for theory classes,Screenshot 2025-10-29 041919.png,2025-04-20,2025-04-20,other
+78,07.04.2025 to 11.04.2025,,Monday to Friday components [isos ndsy gE EA,Screenshot 2025-10-29 041949.png,2025-04-07,2025-04-11,other
+79,14.04.2025,Monday,Holiday lows ont) cepts,Screenshot 2025-10-29 041949.png,2025-04-14,2025-04-14,holiday_vacation
+80,21.04.2025,Monday,courses / components Commencement of Fall Semester 2025-26 (Tentative),Screenshot 2025-10-29 041949.png,2025-04-21,2025-04-21,other
+81,24.06.2023,Saturday,: Course wish list registration by students,Screenshot 2025-10-29 042024.png,2023-06-24,2023-06-24,registration
+82,05.07.2023,Wednesday,"Course allocation and scheduling by Schools FEES"" [MOMS lecevteamsnen",Screenshot 2025-10-29 042024.png,2023-07-05,2023-07-05,other
+83,26.07.2023,Wednesday,Course add/drop option to students a,Screenshot 2025-10-29 042024.png,2023-07-26,2023-07-26,add_drop_withdraw
+84,16.09.2023,Saturday,Continuous Assessment Test -1 ee lee los,Screenshot 2025-10-29 042024.png,2023-09-16,2023-09-16,exam
+85,24.09.2023,Sunday,Gravitas'23 Sas”,Screenshot 2025-10-29 042024.png,2023-09-24,2023-09-24,holiday_vacation
+86,04.10.2023,Wednesday,Course withdraw option for students ES [SS leseaeeese.a,Screenshot 2025-10-29 042024.png,2023-10-04,2023-10-04,add_drop_withdraw
+87,21.10.2023,Saturday,Continuous Assessment Test - I EES [i pec,Screenshot 2025-10-29 042024.png,2023-10-21,2023-10-21,exam
+88,19.11.2023,,Sunda Deepavali (Holiday)y)y)y FE al ee,Screenshot 2025-10-29 042024.png,2023-11-19,2023-11-19,holiday_vacation
+89,24.11.2023,Friday,Final Assessment Test (FAT) for laboratory courses/ components,Screenshot 2025-10-29 042024.png,2023-11-24,2023-11-24,exam
+90,24.11.2023,Friday,"24"" Science Engineering and Technology (SET) Conference",Screenshot 2025-10-29 042024.png,2023-11-24,2023-11-24,other
+91,10.12.2023,Sunday,components ee? Se emawienngemig,Screenshot 2025-10-29 042024.png,2023-12-10,2023-12-10,other
+92,02.01.2024,Tuesday,Winter Vacation for the students (Tentative),Screenshot 2025-10-29 042024.png,2024-01-02,2024-01-02,holiday_vacation
