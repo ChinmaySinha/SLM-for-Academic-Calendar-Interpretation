@@ -1,103 +1,79 @@
 # SLM for Academic Calendar Interpretation
 
-This project is a lightweight, from-scratch pipeline for interpreting academic calendars from PDFs or scanned images. It can answer natural language queries about academic schedules (e.g., "When is the last date to drop a course?") without relying on large, pre-trained language models or external APIs.
+This project is a lightweight pipeline that ingests academic calendar PDFs and images, extracts structured events, and answers natural language queries about them. The entire process runs locally without relying on external LLM APIs.
 
 ## Features
 
--   **OCR Data Ingestion:** Extracts text from calendar images using Tesseract.
--   **Structured Data Conversion:** Parses raw text into a structured CSV format.
--   **Date Normalization:** Converts various date formats into standardized start and end dates.
--   **Baseline Search Model:** Uses a TF-IDF model to find the most relevant calendar events for a given query.
--   **Web Interface:** A simple Flask application provides a user-friendly interface for searching the calendar.
+- **Data Ingestion:** Supports both PDF and image files.
+- **Text Extraction:** Uses PyMuPDF for PDFs and Tesseract OCR for images.
+- **Structured Data:** Parses raw text into a structured CSV format.
+- **Date Normalization:** Normalizes various date formats into ISO 8601.
+- **Event Categorization:** Assigns a category to each event (e.g., `exam`, `holiday`).
+- **QA System:** A simple TF-IDF-based retrieval model to answer natural language queries.
+- **Web Interface:** A Flask-based UI to upload files and ask questions.
 
-## Prerequisites
+## Project Structure
 
-Before you begin, you need to have **Tesseract OCR** installed on your system.
-
-**On Ubuntu/Debian:**
-```bash
-sudo apt-get update
-sudo apt-get install -y tesseract-ocr
+```
+├── app/
+│   ├── app.py              # Flask web application
+│   └── templates/
+│       └── index.html      # HTML template for the UI
+├── data/
+│   ├── calendar.png        # Sample calendar image
+│   └── ...                 # Place your calendar files here
+├── src/
+│   ├── ingest_data.py      # Ingests data from PDFs and images
+│   ├── normalize_dates.py  # Normalizes dates
+│   ├── categorize_events.py # Categorizes events
+│   └── baseline_retrieval.py # Builds the TF-IDF model
+├── notebooks/
+│   └── (Exploratory notebooks)
+├── run_pipeline.py         # Master script to run the data processing pipeline
+├── requirements.txt      # Python dependencies
+└── README.md
 ```
 
-**On macOS (using Homebrew):**
-```bash
-brew install tesseract
-```
+## Setup and Usage
 
-**On Windows:**
-Download and install Tesseract from the [official repository](https://github.com/UB-Mannheim/tesseract/wiki). Make sure to add the Tesseract installation directory to your system's `PATH`.
+### 1. Prerequisites
 
-## Setup and Installation
+- **Python 3.8+**
+- **Tesseract OCR:** You must have Tesseract installed on your system.
+  - **macOS:** `brew install tesseract`
+  - **Ubuntu:** `sudo apt-get install tesseract-ocr`
+  - **Windows:** Download from the [official Tesseract repository](https://github.com/UB-Mannheim/tesseract/wiki).
 
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/ChinmaySinha/SLM-for-Academic-Calendar-Interpretation.git
-    cd SLM-for-Academic-Calendar-Interpretation
-    ```
+### 2. Installation
 
-2.  **Create a virtual environment (recommended):**
-    ```bash
-    python3 -m venv venv
-    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
-    ```
-
-3.  **Install the Python dependencies:**
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-## Running the Application
-
-The application consists of two main parts: the data processing pipeline and the web server.
-
-### 1. Run the Data Processing Pipeline
-
-Before you can run the web application, you need to process the source data and build the search model.
+Clone the repository and install the required Python packages:
 
 ```bash
-# This script will run all the necessary data processing steps in order.
-python3 src/parse_ocr.py
-python3 src/normalize_dates.py
-python3 src/categorize_events.py
-python3 src/baseline_retrieval.py
+git clone <repository-url>
+cd <repository-name>
+pip install -r requirements.txt
 ```
 
-This will generate the following files in the `data/` directory:
--   `calendar.csv`
--   `calendar_normalized.csv`
--   `calendar_processed.csv`
--   `vectorizer.joblib` (the TF-IDF vectorizer)
--   `tfidf_matrix.joblib` (the TF-IDF matrix)
+### 3. Add Your Calendar Files
 
-### 2. Start the Web Server
+Place your academic calendar files (PDFs or images) into the `data/` directory.
 
-Once the data processing is complete, you can start the Flask web server:
+### 4. Run the Data Processing Pipeline
+
+To process the files in the `data/` directory and build the search model, run the master pipeline script:
+
+```bash
+python3 run_pipeline.py
+```
+
+This will create a `data/calendar_events.csv` file and the TF-IDF model files (`data/tfidf_vectorizer.joblib` and `data/tfidf_matrix.joblib`).
+
+### 5. Run the Web Application
+
+Start the Flask web server:
 
 ```bash
 python3 app/app.py
 ```
 
-The application will be available at `http://127.0.0.1:5001`.
-
-## Expanding the Dataset
-
-You can improve the accuracy and coverage of the model by adding more academic calendars to the dataset.
-
-1.  **Add New Calendar Files:**
-    -   Place your new calendar images (e.g., `.png`, `.jpg`) or PDFs in the `data/` directory.
-
-2.  **Update the Ingestion Script:**
-    -   For now, the data ingestion is handled manually by running Tesseract on a single file. To add a new file, you would first run Tesseract on it:
-        ```bash
-        # For an image file
-        tesseract data/new_calendar.png data/ocr_output.txt
-
-        # For a PDF, you would first need to convert it to images, or use a PDF-to-text tool.
-        ```
-    -   *Note: In the future, this process can be automated to handle multiple files and formats.*
-
-3.  **Re-run the Data Processing Pipeline:**
-    -   After updating `data/ocr_output.txt` with the text from your new calendar, re-run the entire pipeline as described in the "Running the Application" section to rebuild the model with the new data.
-
-This will update the search index and make the new calendar events available in the web application.
+Open your web browser and navigate to `http://127.0.0.1:5000` to use the application.

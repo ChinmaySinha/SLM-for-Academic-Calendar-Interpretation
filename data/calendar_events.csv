@@ -1,0 +1,20 @@
+id,raw_date_text,day_text,details_text,source_file,normalized_date_start,normalized_date_end,event_type
+1,29.10.2025,Wednesday,Mock - Course registration for Freshers,calendar.png,2025-10-29,2025-10-29,registration
+2,01.11.2025,Saturda,Course registration by students (05.12.2025 Frida ‘Commencement of Winter Semester 2025-26,calendar.png,2025-11-01,2025-11-01,registration
+3,05.12.2025,to,07.12.2025 _| Friday to Sunday Course add/drop option for students,calendar.png,2025-12-05,2025-12-05,add_drop_withdraw
+4,13.12.2025,Saturday,Last date for the payment of re-registration fees,calendar.png,2025-12-13,2025-12-13,registration
+5,21.12.2025,to,04.01.2026 Sunday to Sunday Winter Vacation for the students (15 Days),calendar.png,2025-12-21,2025-12-21,holiday_vacation
+6,14.01.2026,to,18.01.2026 Wednesday to Sunday Pongal Holidays,calendar.png,2026-01-14,2026-01-14,holiday_vacation
+7,27.01.2026,to,02.02.2026 Tuesday to Monday Continuous Assessment Test -1,calendar.png,2026-01-27,2026-01-27,other
+8,16.02.2026,to,18.02.2026 Monday to Wednesday Course withdraw option for students,calendar.png,2026-02-16,2026-02-16,add_drop_withdraw
+9,26.02.2026,to,01.03.2026 | Thursday to Sunday Riviera 2026 (04.03.2026 Wednesday Holi (Holiday),calendar.png,2026-02-26,2026-02-26,holiday_vacation
+10,15.03.2026,to,23.03.2026 | Sunday to Monday ‘Continuous Assessment Test — II 19.03.2026 Thursday Ramzan (Holiday),calendar.png,2026-03-15,2026-03-15,holiday_vacation
+11,20.03.2026,Frida,‘Telugu New Year's Day,calendar.png,2026-03-20,2026-03-20,other
+12,03.04.2026,Frida,Good Friday (No Instructional Day),calendar.png,2026-04-03,2026-04-03,other
+13,10.04.2026,Friday,Last instructional day for laboratory classes,calendar.png,2026-04-10,2026-04-10,other
+14,11.04.2026,to,17.04.2026 Saturday to Friday Final assessment test for laboratory courses! components Tamil New Year's Day/ Dr. B. R. Ambedkar Birthday,calendar.png,2026-04-11,2026-04-11,other
+15,14.04.2026,Tuesday,(Holiday),calendar.png,2026-04-14,2026-04-14,holiday_vacation
+16,17.04.2026,Frida,Last instructional day for theory classes ‘Commencement of final assessment test for theory,calendar.png,2026-04-17,2026-04-17,other
+17,20.04.2026,Monday,courses / components,calendar.png,2026-04-20,2026-04-20,other
+18,11.05.2026,Monday,Commencement of Summer Term 2025-26 (Tentative),calendar.png,2026-05-11,2026-05-11,other
+19,13.07.2026,Monday,"Commencement of Fall Semester 2026-27 (Tentative) Note: Students should participate in the course wish list registration (mandatory) to become eligible for Course Registration It is necessary to maintain 100% attendance. However, relaxation on minimum attendance requirement is given for ‘genuine reasons. A minimum of 75% attendance is mandatory for appearing for the examinations (Continuous ‘Assessment Tests and Final Assessment Tests) Last date for the upload of the assignments and project reports is 17-04-2026 (Friday). FAT schedule will be announced by CoE at the appropriate time, CAT-1| CAT-I | FAT | Total No. of if Instructional Days 28 28 19 | 75 WR M. Anthony Xavior PhD Dean Academics ln fes",calendar.png,2026-07-13,2026-07-13,registration

@@ -1,45 +1,51 @@
 from flask import Flask, render_template, request
 import pandas as pd
 import joblib
-import sys
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
 import os
-
-# Add the src directory to the Python path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
-
-from baseline_retrieval import search_events
 
 app = Flask(__name__)
 
-# Load the model and data
+# Load the data and the TF-IDF model
+DATA_PATH = os.path.join(os.path.dirname(__file__), '..', 'data')
 try:
-    data_path = os.path.join(os.path.dirname(__file__), '..', 'data', 'calendar_processed.csv')
-    vectorizer_path = os.path.join(os.path.dirname(__file__), '..', 'data', 'vectorizer.joblib')
-    matrix_path = os.path.join(os.path.dirname(__file__), '..', 'data', 'tfidf_matrix.joblib')
+    df = pd.read_csv(os.path.join(DATA_PATH, 'calendar_events.csv'))
+    vectorizer = joblib.load(os.path.join(DATA_PATH, 'tfidf_vectorizer.joblib'))
+    tfidf_matrix = joblib.load(os.path.join(DATA_PATH, 'tfidf_matrix.joblib'))
+except FileNotFoundError:
+    print("Error: Model files not found. Please run the data processing pipeline first.")
+    df = pd.DataFrame() # Empty dataframe to avoid errors on startup
+    vectorizer = None
+    tfidf_matrix = None
 
-    df = pd.read_csv(data_path)
-    df['combined_text'] = df['details_text'].fillna('') + ' ' + \
-                          df['day_text'].fillna('') + ' ' + \
-                          df['event_type'].fillna('')
 
-    vectorizer = joblib.load(vectorizer_path)
-    tfidf_matrix = joblib.load(matrix_path)
-except FileNotFoundError as e:
-    print(f"Error loading model or data: {e}")
-    print("Please ensure the model is built by running 'src/baseline_retrieval.py' first.")
-    df, vectorizer, tfidf_matrix = None, None, None
-
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
 def index():
-    results = None
-    query = ""
-    if request.method == 'POST':
-        query = request.form['query']
-        if df is not None:
-            results_df = search_events(query, df, vectorizer, tfidf_matrix)
-            results = results_df.to_dict('records')
+    return render_template('index.html')
 
-    return render_template('index.html', query=query, results=results)
+@app.route('/search')
+def search():
+    query = request.args.get('query', '')
+    if not query or vectorizer is None:
+        return render_template('index.html', results=[])
+
+    # Transform the query using the loaded vectorizer
+    query_vector = vectorizer.transform([query])
+
+    # Calculate cosine similarity between the query and the calendar events
+    cosine_similarities = cosine_similarity(query_vector, tfidf_matrix).flatten()
+
+    # Get the top 5 most similar events
+    top_indices = cosine_similarities.argsort()[-5:][::-1]
+
+    results = []
+    for i in top_indices:
+        # Check if the similarity score is above a certain threshold
+        if cosine_similarities[i] > 0.1:
+             results.append(df.iloc[i].to_dict())
+
+    return render_template('index.html', results=results, query=query)
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5001) # Use a different port than default
+    app.run(debug=True)

@@ -1,57 +1,42 @@
-import csv
+import pandas as pd
 
 def categorize_event(details_text):
-    """
-    Categorizes an event based on keywords in its details.
-    """
+    """Categorizes an event based on its details text."""
     details_lower = details_text.lower()
 
-    # Synonym mapping
-    if any(s in details_lower for s in ["drop course", "withdraw", "course withdraw"]):
-        return "withdrawal"
-    if "re-registration" in details_lower:
-        return "registration"
+    if 'add/drop' in details_lower or 'course withdraw' in details_lower:
+        return 'add_drop_withdraw'
+    if 'registration' in details_lower:
+        return 'registration'
+    if 'semester starts' in details_lower or 'commencement of classes' in details_lower:
+        return 'semester_start'
+    if 'semester ends' in details_lower:
+        return 'semester_end'
+    if 'mid semester examination' in details_lower:
+        return 'exam'
+    if 'end semester examination' in details_lower:
+        return 'exam'
+    if 're-examination' in details_lower:
+        return 'exam'
+    if 'holiday' in details_lower or 'vacation' in details_lower:
+        return 'holiday_vacation'
+    if 'fee payment' in details_lower:
+        return 'fee_payment'
 
-    # Rule-based categorization
-    if "vacation" in details_lower:
-        return "vacation"
-    if "holiday" in details_lower:
-        return "holiday"
-    if "registration" in details_lower:
-        return "registration"
-    if "add/drop" in details_lower:
-        return "add_drop"
-    if "commencement" in details_lower:
-        return "semester_event"
-    if "assessment test" in details_lower:
-        return "exam"
-    if "instructional day" in details_lower:
-        return "instructional_day"
-    if "riviera" in details_lower:
-        return "event"
-
-    return "other"
+    return 'other'
 
 def main():
-    """
-    Reads the normalized CSV, categorizes events, and writes to a new CSV.
-    """
-    input_filepath = 'data/calendar_normalized.csv'
-    output_filepath = 'data/calendar_processed.csv'
+    input_path = 'data/calendar_events.csv'
+    try:
+        df = pd.read_csv(input_path)
+    except FileNotFoundError:
+        print(f"Error: {input_path} not found. Please run the ingestion and normalization scripts first.")
+        return
 
-    with open(input_filepath, 'r', encoding='utf-8') as f_in, \
-         open(output_filepath, 'w', newline='', encoding='utf-8') as f_out:
+    df['event_type'] = df['details_text'].apply(categorize_event)
 
-        reader = csv.DictReader(f_in)
-        fieldnames = reader.fieldnames + ['event_type']
-        writer = csv.DictWriter(f_out, fieldnames=fieldnames)
-        writer.writeheader()
-
-        for row in reader:
-            details = row.get('details_text', '')
-            event_type = categorize_event(details)
-            row['event_type'] = event_type
-            writer.writerow(row)
+    df.to_csv(input_path, index=False)
+    print(f"Successfully categorized events in {input_path}")
 
 if __name__ == '__main__':
     main()

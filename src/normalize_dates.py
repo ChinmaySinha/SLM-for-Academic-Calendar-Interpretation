@@ -1,75 +1,53 @@
-import csv
+import pandas as pd
 import dateparser
-from datetime import datetime
+from datetime import timedelta
 
-def parse_date_text(raw_text):
-    """
-    Parses a raw date string and returns a start and end date.
-    Handles single dates, ranges with "to", and multiple dates with "&".
-    """
-    raw_text = raw_text.strip()
-    start_date, end_date = None, None
+def normalize_date_text(date_text):
+    """Normalizes a single date string or a date range string."""
+    parser_settings = {'DATE_ORDER': 'DMY'}
 
-    try:
-        if 'to' in raw_text:
-            parts = raw_text.split('to')
-            start_str = parts[0].strip()
-            end_str = parts[1].strip()
+    # Handle date ranges separated by "to"
+    if 'to' in date_text:
+        start_str, end_str = date_text.split('to')
+        start_date = dateparser.parse(start_str.strip(), settings=parser_settings)
+        end_date = dateparser.parse(end_str.strip(), settings=parser_settings)
+        return start_date, end_date
 
-            # Help dateparser by providing the format
-            start_date = dateparser.parse(start_str, date_formats=['%d.%m.%Y'])
-            end_date = dateparser.parse(end_str, date_formats=['%d.%m.%Y'])
+    # Handle multiple dates separated by "&"
+    if '&' in date_text:
+        dates_str = date_text.split('&')
+        start_date = dateparser.parse(dates_str[0].strip(), settings=parser_settings)
+        end_date = dateparser.parse(dates_str[-1].strip(), settings=parser_settings)
+        return start_date, end_date
 
-        elif '&' in raw_text:
-            parts = raw_text.split('&')
-            start_str = parts[0].strip()
-            end_str = parts[1].strip()
-
-            start_date = dateparser.parse(start_str, date_formats=['%d.%m.%Y'])
-            end_date = dateparser.parse(end_str, date_formats=['%d.%m.%Y'])
-
-        else:
-            # Single date
-            start_date = dateparser.parse(raw_text, date_formats=['%d.%m.%Y'])
-            end_date = start_date
-
-    except Exception as e:
-        print(f"Could not parse date: {raw_text}. Error: {e}")
-        return None, None
-
-    # Format to ISO 8601 (YYYY-MM-DD)
-    start_iso = start_date.strftime('%Y-%m-%d') if start_date else None
-    end_iso = end_date.strftime('%Y-%m-%d') if end_date else None
-
-    return start_iso, end_iso
-
+    # Handle single dates
+    date = dateparser.parse(date_text.strip(), settings=parser_settings)
+    return date, date
 
 def main():
-    """
-    Reads the parsed CSV, normalizes dates, and writes to a new CSV.
-    """
-    input_filepath = 'data/calendar.csv'
-    output_filepath = 'data/calendar_normalized.csv'
+    input_path = 'data/calendar_events.csv'
+    try:
+        df = pd.read_csv(input_path)
+    except FileNotFoundError:
+        print(f"Error: {input_path} not found. Please run the ingestion script first.")
+        return
 
-    with open(input_filepath, 'r', encoding='utf-8') as f_in, \
-         open(output_filepath, 'w', newline='', encoding='utf-8') as f_out:
+    normalized_dates = []
+    for index, row in df.iterrows():
+        start_date, end_date = normalize_date_text(row['raw_date_text'])
+        normalized_dates.append({
+            'normalized_date_start': start_date.strftime('%Y-%m-%d') if start_date else None,
+            'normalized_date_end': end_date.strftime('%Y-%m-%d') if end_date else None
+        })
 
-        reader = csv.DictReader(f_in)
-        fieldnames = reader.fieldnames + ['normalized_date_start', 'normalized_date_end']
-        writer = csv.DictWriter(f_out, fieldnames=fieldnames)
-        writer.writeheader()
+    dates_df = pd.DataFrame(normalized_dates)
 
-        for row in reader:
-            raw_date_text = row.get('raw_date_text', '').strip()
-            if raw_date_text:
-                start_date, end_date = parse_date_text(raw_date_text)
-                row['normalized_date_start'] = start_date
-                row['normalized_date_end'] = end_date
-            else:
-                row['normalized_date_start'] = None
-                row['normalized_date_end'] = None
+    # Update the original dataframe with the new columns
+    df['normalized_date_start'] = dates_df['normalized_date_start']
+    df['normalized_date_end'] = dates_df['normalized_date_end']
 
-            writer.writerow(row)
+    df.to_csv(input_path, index=False)
+    print(f"Successfully normalized dates in {input_path}")
 
 if __name__ == '__main__':
     main()
