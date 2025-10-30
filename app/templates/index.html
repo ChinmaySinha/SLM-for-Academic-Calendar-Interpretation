@@ -67,7 +67,7 @@
             color: #fff;
             font-size: 1rem;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background-color: 0.3s;
         }
 
         input[type="submit"]:hover {
@@ -101,6 +101,14 @@
             background-color: var(--secondary-color);
         }
 
+        .generated-answer {
+            background-color: var(--secondary-color);
+            padding: 1em;
+            border-radius: 5px;
+            margin-top: 1.5em;
+            border-left: 4px solid var(--accent-color);
+        }
+
     </style>
 </head>
 <body>
@@ -111,29 +119,57 @@
             <input type="submit" value="Search">
         </form>
 
-        {% if results is not none %}
-            {% if results %}
-                <h2>Results for "{{ query }}"</h2>
+        {% if retriever == 'slm' %}
+            {% if generated_answer %}
+                <h2>Answer</h2>
+                <div class="generated-answer">
+                    <p>{{ generated_answer }}</p>
+                </div>
+                <h2>Source Events</h2>
                 <table class="results-table">
                     <thead>
                         <tr>
                             <th>Date(s)</th>
                             <th>Details</th>
-                            <th>Start Date</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for result in results %}
+                        {% for event in source_events %}
                             <tr>
-                                <td>{{ result.raw_date_text }}</td>
-                                <td>{{ result.details_text }}</td>
-                                <td>{{ result.normalized_date_start }}</td>
+                                <td>{{ event.raw_date_text }}</td>
+                                <td>{{ event.details_text }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>
                 </table>
-            {% else %}
+            {% elif query %}
                 <h2>No results found for "{{ query }}"</h2>
+            {% endif %}
+        {% else %}
+            {% if results is not none %}
+                {% if results %}
+                    <h2>Results for "{{ query }}"</h2>
+                    <table class="results-table">
+                        <thead>
+                            <tr>
+                                <th>Date(s)</th>
+                                <th>Details</th>
+                                <th>Start Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for result in results %}
+                                <tr>
+                                    <td>{{ result.raw_date_text }}</td>
+                                    <td>{{ result.details_text }}</td>
+                                    <td>{{ result.normalized_date_start }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <h2>No results found for "{{ query }}"</h2>
+                {% endif %}
             {% endif %}
         {% endif %}
     </div>

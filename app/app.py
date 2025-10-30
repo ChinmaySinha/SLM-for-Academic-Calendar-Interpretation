@@ -18,22 +18,18 @@ df = None
 # TF-IDF specific
 vectorizer = None
 tfidf_matrix = None
-# SLM specific
+# SLM specific (will be loaded lazily)
 retrieval_model = None
 faiss_index = None
 generation_model = None
 generation_tokenizer = None
 
 # --- Model Loading ---
-def load_models(retriever_type):
-    """Load all necessary models based on the retriever type."""
-    global df, RETRIEVER_TYPE
-    global vectorizer, tfidf_matrix
-    global retrieval_model, faiss_index, generation_model, generation_tokenizer
-    
-    RETRIEVER_TYPE = retriever_type
+def load_initial_data():
+    """Load the initial CSV data and TF-IDF models if specified."""
+    global df, vectorizer, tfidf_matrix
     DATA_PATH = os.path.join(os.path.dirname(__file__), '..', 'data')
-    
+
     try:
         df = pd.read_csv(os.path.join(DATA_PATH, 'calendar_events.csv'))
         print(f"Loaded {len(df)} events from calendar_events.csv")
@@ -49,27 +45,44 @@ def load_models(retriever_type):
         except FileNotFoundError:
             print("Error: TF-IDF model files not found. Please run 'python src/baseline_retrieval.py --retriever tfidf'")
             sys.exit(1)
-    
-    elif RETRIEVER_TYPE == 'slm':
+
+def ensure_slm_models_loaded():
+    """Load the SLM models if they haven't been loaded yet."""
+    global retrieval_model, faiss_index, generation_model, generation_tokenizer
+    if retrieval_model is None:
+        DATA_PATH = os.path.join(os.path.dirname(__file__), '..', 'data')
         try:
-            # Load Sentence Transformer for retrieval
+            print("Lazily loading SLM models...")
             retrieval_model = SentenceTransformer('all-MiniLM-L6-v2')
-            # Load FAISS index
             faiss_index = faiss.read_index(os.path.join(DATA_PATH, 'faiss.index'))
-            # Load Flan-T5 for generation
             model_name = 'google/flan-t5-small'
             generation_tokenizer = T5Tokenizer.from_pretrained(model_name)
             generation_model = T5ForConditionalGeneration.from_pretrained(model_name)
-            print("Successfully loaded SLM models (MiniLM, FAISS, Flan-T5).")
+            print("Successfully loaded SLM models.")
         except Exception as e:
             print(f"Error loading SLM models: {e}")
-            print("Please run 'python src/baseline_retrieval.py --retriever slm'")
-            sys.exit(1)
+            raise e
+
+def enhance_query(query):
+    """Enhance the query with synonyms and related terms."""
+    query_lower = query.lower()
+    enhancements = []
+    if 'drop' in query_lower or 'withdraw' in query_lower:
+        enhancements.extend(['add/drop', 'withdraw', 'course drop', 'course withdraw'])
+    if 'exam' in query_lower or 'test' in query_lower:
+        enhancements.extend(['assessment test', 'cat', 'examination', 'final assessment', 'fat'])
+    if 'register' in query_lower or 'registration' in query_lower:
+        enhancements.extend(['registration', 'course registration', 'register'])
+    if 'holiday' in query_lower or 'vacation' in query_lower:
+        enhancements.extend(['holiday', 'vacation', 'no instructional'])
+    enhanced = query + ' ' + ' '.join(enhancements)
+    return enhanced
 
 # --- Search Functions ---
 def search_tfidf(query):
     """Performs search using the TF-IDF model."""
-    query_vector = vectorizer.transform([query])
+    enhanced_query = enhance_query(query)
+    query_vector = vectorizer.transform([enhanced_query])
     cosine_similarities = cosine_similarity(query_vector, tfidf_matrix).flatten()
     top_indices = cosine_similarities.argsort()[-10:][::-1]
     
@@ -83,21 +96,20 @@ def search_tfidf(query):
 
 def search_slm(query):
     """Performs search and answer synthesis using the SLM pipeline."""
-    # 1. Encode query and retrieve from FAISS
+    ensure_slm_models_loaded()
+
     query_embedding = retrieval_model.encode([query])
-    k = 5  # Number of events to retrieve
+    k = 5
     distances, indices = faiss_index.search(query_embedding.astype('float32'), k)
-    
+
     retrieved_events = [df.iloc[i] for i in indices[0]]
-    
-    # 2. Prepare context for Flan-T5
+
     context = ""
     for event in retrieved_events:
         date = event.get('normalized_date', event.get('raw_date_text', ''))
         details = event.get('details_text', '')
         context += f"- Date: {date}, Event: {details}\n"
 
-    # 3. Generate answer with Flan-T5
     prompt = f"""
     Context from the academic calendar:
     {context}
@@ -130,9 +142,12 @@ def search():
         return render_template('index.html', results=results, query=query, retriever=RETRIEVER_TYPE)
 
     elif RETRIEVER_TYPE == 'slm':
-        generated_answer, source_events = search_slm(query)
-        return render_template('index.html', query=query, generated_answer=generated_answer,
-                               source_events=source_events, retriever=RETRIEVER_TYPE)
+        try:
+            generated_answer, source_events = search_slm(query)
+            return render_template('index.html', query=query, generated_answer=generated_answer,
+                                   source_events=source_events, retriever=RETRIEVER_TYPE)
+        except Exception as e:
+            return render_template('index.html', error=str(e), retriever=RETRIEVER_TYPE)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Run the Flask app with a chosen retriever.")
@@ -140,5 +155,6 @@ if __name__ == '__main__':
                         help="The type of retrieval model to use ('tfidf' or 'slm').")
     args = parser.parse_args()
 
-    load_models(args.retriever)
+    RETRIEVER_TYPE = args.retriever
+    load_initial_data()
     app.run(debug=True, port=5000)

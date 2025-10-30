@@ -1,0 +1,13 @@
+# Cache files
+__pycache__/
+*.pyc
+
+# Data files
+data/calendar_events.csv
+data/embeddings.npy
+data/faiss.index
+data/tfidf_matrix.joblib
+data/tfidf_vectorizer.joblib
+
+# Log files
+app.log
