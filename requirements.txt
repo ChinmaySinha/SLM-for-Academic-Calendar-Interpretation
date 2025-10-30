@@ -5,3 +5,8 @@ dateparser
 joblib
 pytesseract
 PyMuPDF
+sentence-transformers
+faiss-cpu
+transformers
+peft
+accelerate
