@@ -1,6 +1,5 @@
 Flask
 pandas
-scikit-learn
 dateparser
 joblib
 pytesseract
