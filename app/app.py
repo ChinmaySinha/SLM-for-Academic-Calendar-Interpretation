@@ -8,7 +8,7 @@ from sentence_transformers import SentenceTransformer
 from transformers import T5ForConditionalGeneration, T5Tokenizer
 
 app = Flask(__name__)
-
+#changes
 # --- Global Variables ---
 df = None
 retrieval_model = None
